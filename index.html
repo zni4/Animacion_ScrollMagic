@@ -51,7 +51,7 @@
     <div id="trigger2"></div>
 
     <div id="animate2" style="height:50px;">
-        <svg width="100%" height="3300" viewBox="0 180 250 150" style="border: 2px solid blue;">
+        <svg width="100%" height="3300" viewBox="0 260 250 150" style="border: 2px solid blue;">
             <path style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
                   d="M 14.967093,17.436073 C 33.031684,18.486522 63.6269,13.188158 66.071142,36.449886 67.705905,52.007845 82.367438,67.168391 76.402809,81.469435 69.329282,98.429218 68.279497,61.88048 75.904544,76.502637 87.4454,98.633938 50.515402,107.49714 55.324792,122.74026 c 5.833204,18.48805 31.567903,16.4374 40.892238,31.00327 5.40676,8.44609 -7.060615,7.54985 -12.02713,7.48355"
                   id="dibujo"
@@ -85,6 +85,89 @@
                   inkscape:path-effect="#path-effect838"
                   inkscape:original-d="m 75.637275,130.49108 c -1.299363,3.46284 -10.748713,4.33425 -11.225321,4.81085"
                   transform="matrix(0.86463396,-0.14048383,0,0.92068688,10.252659,20.119663)" />
+        </svg>
+    </div>
+    <div id="test" style="height:3200px; border: 1px solid red;"></div>
+
+    <script>
+        function pathPrepare($el) {
+            var lineLength = $el[0].getTotalLength();
+            $el.css("stroke-dasharray", lineLength);
+            $el.css("stroke-dashoffset", lineLength);
+        }
+
+        var $dibujo = $("path#dibujo");
+        var $dibujo2 = $("path#dibujo2");
+        var $dibujo3 = $("path#dibujo3");
+        var $dibujo4 = $("path#dibujo4");
+        var $dibujo5 = $("path#dibujo5");
+
+        // prepare SVG
+        pathPrepare($dibujo);
+        pathPrepare($dibujo2);
+        pathPrepare($dibujo3);
+        pathPrepare($dibujo4);
+        pathPrepare($dibujo5);
+
+        // init controller
+        var controller1 = new ScrollMagic.Controller();
+
+        // build tween
+        var tween = new TimelineMax()
+            .add(TweenMax.to($dibujo, 0.9, { strokeDashoffset: 0, ease: Linear.easeNone })) // draw word for 0.9
+            //.add(TweenMax.to("path", 0.9, { stroke: "green", ease: Linear.easeNone }), 0);			// change color during the whole thing
+            .add(TweenMax.to($dibujo, 0.9, { stroke: "green", ease: Linear.easeNone }), 0);			// change color during the whole thing
+
+        // build scene
+        var scene = new ScrollMagic.Scene({ triggerElement: "#trigger2", duration: 850, tweenChanges: true })
+            .setTween(tween)
+            .addIndicators() // add indicators (requires plugin)
+            .addTo(controller1);
+
+        var tween2 = new TimelineMax()
+            .add(TweenMax.to($dibujo2, 0.9, { strokeDashoffset: 0, ease: Linear.easeNone })) // draw word for 0.9
+            .add(TweenMax.to($dibujo2, 0.9, { stroke: "red", ease: Linear.easeNone }), 0);			// change color during the whole thing
+
+        // build scene
+        var scene2 = new ScrollMagic.Scene({ triggerElement: "#trigger2", duration: 850, tweenChanges: true })
+            .setTween(tween2)
+            //.addIndicators() // add indicators (requires plugin)
+            .addTo(controller1);
+
+        var tween3 = new TimelineMax()
+            .add(TweenMax.to($dibujo3, 0.9, { strokeDashoffset: 0, ease: Linear.easeNone })) // draw word for 0.9
+            .add(TweenMax.to($dibujo3, 0.9, { stroke: "red", fill: "red", ease: Linear.easeNone }), 0);			// change color during the whole thing
+
+        // build scene
+        var scene3 = new ScrollMagic.Scene({ triggerElement: "#trigger2", duration: 850, tweenChanges: true })
+            .setTween(tween3)
+            //.addIndicators() // add indicators (requires plugin)
+            .addTo(controller1);
+
+        var tween4 = new TimelineMax()
+            .add(TweenMax.to($dibujo4, 0.9, { strokeDashoffset: 0, ease: Linear.easeNone })) // draw word for 0.9
+            .add(TweenMax.to($dibujo4, 0.9, { stroke: "blue", ease: Linear.easeNone }), 0);			// change color during the whole thing
+
+        // build scene
+        var scene4 = new ScrollMagic.Scene({ triggerElement: "#trigger2", duration: 850, tweenChanges: true })
+            .setTween(tween4)
+            //.addIndicators() // add indicators (requires plugin)
+            .addTo(controller1);
+
+        var tween5 = new TimelineMax()
+            .add(TweenMax.to($dibujo5, 0.9, { strokeDashoffset: 0, ease: Linear.easeNone })) // draw word for 0.9
+            .add(TweenMax.to($dibujo5, 0.9, { stroke: "gray", ease: Linear.easeNone }), 0);			// change color during the whole thing
+
+        // build scene
+        var scene5 = new ScrollMagic.Scene({ triggerElement: "#trigger2", duration: 850, tweenChanges: true })
+            .setTween(tween5)
+            //.addIndicators() // add indicators (requires plugin)
+            .addTo(controller1);
+    </script>
+
+    <div id="trigger3"></div>
+    <div id="animate3" style="height:50px;">
+        <svg width="100%" height="3300" viewBox="0 270 250 150" style="border: 2px solid blue;">
             <path style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
                   d="m 26.458333,27.125001 c 38.855241,3.3296 76.861127,33.767129 114.475017,16.606284 28.20361,-12.867527 69.42072,27.178362 23.06666,29.337051 C 125.9804,74.838893 52.353228,45.06301 49.746999,82.845602 c -2.685543,38.932408 56.371321,37.188768 84.574721,37.288568 50.95882,0.18032 31.13204,43.49743 -13.44639,53.92115 -29.415543,6.8782 -115.8295965,2.52122 -93.164871,21.13422 28.355498,23.28645 76.785861,13.90359 102.313351,40.57831 40.74079,42.57172 -65.700268,49.62054 -48.433641,53.49246 29.478641,6.61038 64.116971,-9.25903 91.522921,5.47184"
                   id="dibujo6"
@@ -103,85 +186,23 @@
             $el.css("stroke-dashoffset", lineLength);
         }
 
-        var $dibujo = $("path#dibujo");
-        var $dibujo2 = $("path#dibujo2");
-        var $dibujo3 = $("path#dibujo3");
-        var $dibujo4 = $("path#dibujo4");
-        var $dibujo5 = $("path#dibujo5");
         var $dibujo6 = $("path#dibujo6");
 
         // prepare SVG
-        pathPrepare($dibujo);
-        pathPrepare($dibujo2);
-        pathPrepare($dibujo3);
-        pathPrepare($dibujo4);
-        pathPrepare($dibujo5);
         pathPrepare($dibujo6);
 
         // init controller
-        var controller = new ScrollMagic.Controller();
-
-        // build tween
-        var tween = new TimelineMax()
-            .add(TweenMax.to($dibujo, 0.9, { strokeDashoffset: 0, ease: Linear.easeNone })) // draw word for 0.9
-            //.add(TweenMax.to("path", 0.9, { stroke: "green", ease: Linear.easeNone }), 0);			// change color during the whole thing
-            .add(TweenMax.to($dibujo, 0.9, { stroke: "green", ease: Linear.easeNone }), 0);			// change color during the whole thing
-
-        // build scene
-        var scene = new ScrollMagic.Scene({ triggerElement: "#trigger2", duration: 2000, tweenChanges: true })
-            .setTween(tween)
-            .addIndicators() // add indicators (requires plugin)
-            .addTo(controller);
-
-        var tween2 = new TimelineMax()
-            .add(TweenMax.to($dibujo2, 0.9, { strokeDashoffset: 0, ease: Linear.easeNone })) // draw word for 0.9
-            .add(TweenMax.to($dibujo2, 0.9, { stroke: "red", ease: Linear.easeNone }), 0);			// change color during the whole thing
-
-        // build scene
-        var scene2 = new ScrollMagic.Scene({ triggerElement: "#trigger2", duration: 2000, tweenChanges: true })
-            .setTween(tween2)
-            //.addIndicators() // add indicators (requires plugin)
-            .addTo(controller);
-
-        var tween3 = new TimelineMax()
-            .add(TweenMax.to($dibujo3, 0.9, { strokeDashoffset: 0, ease: Linear.easeNone })) // draw word for 0.9
-            .add(TweenMax.to($dibujo3, 0.9, { stroke: "red", fill: "red", ease: Linear.easeNone }), 0);			// change color during the whole thing
-
-        // build scene
-        var scene3 = new ScrollMagic.Scene({ triggerElement: "#trigger2", duration: 2000, tweenChanges: true })
-            .setTween(tween3)
-            //.addIndicators() // add indicators (requires plugin)
-            .addTo(controller);
-
-        var tween4 = new TimelineMax()
-            .add(TweenMax.to($dibujo4, 0.9, { strokeDashoffset: 0, ease: Linear.easeNone })) // draw word for 0.9
-            .add(TweenMax.to($dibujo4, 0.9, { stroke: "blue", ease: Linear.easeNone }), 0);			// change color during the whole thing
-
-        // build scene
-        var scene4 = new ScrollMagic.Scene({ triggerElement: "#trigger2", duration: 2000, tweenChanges: true })
-            .setTween(tween4)
-            //.addIndicators() // add indicators (requires plugin)
-            .addTo(controller);
-
-        var tween5 = new TimelineMax()
-            .add(TweenMax.to($dibujo5, 0.9, { strokeDashoffset: 0, ease: Linear.easeNone })) // draw word for 0.9
-            .add(TweenMax.to($dibujo5, 0.9, { stroke: "gray", ease: Linear.easeNone }), 0);			// change color during the whole thing
-
-        // build scene
-        var scene5 = new ScrollMagic.Scene({ triggerElement: "#trigger2", duration: 2000, tweenChanges: true })
-            .setTween(tween5)
-            //.addIndicators() // add indicators (requires plugin)
-            .addTo(controller);
+        var controller2 = new ScrollMagic.Controller();
 
         var tween6 = new TimelineMax()
             .add(TweenMax.to($dibujo6, 0.9, { strokeDashoffset: 0, ease: Linear.easeNone })) // draw word for 0.9
-            //.add(TweenMax.to($dibujo6, 0.9, { stroke: "gray", ease: Linear.easeNone }), 0);			// change color during the whole thing
+        //.add(TweenMax.to($dibujo6, 0.9, { stroke: "gray", ease: Linear.easeNone }), 0);			// change color during the whole thing
 
         // build scene
-        var scene6 = new ScrollMagic.Scene({ triggerElement: "#trigger2", duration: 2000, tweenChanges: true })
+        var scene6 = new ScrollMagic.Scene({ triggerElement: "#trigger3", duration: 1400, tweenChanges: true })
             .setTween(tween6)
-            //.addIndicators() // add indicators (requires plugin)
-            .addTo(controller);
+            .addIndicators() // add indicators (requires plugin)
+            .addTo(controller2);
     </script>
 
 </body>
